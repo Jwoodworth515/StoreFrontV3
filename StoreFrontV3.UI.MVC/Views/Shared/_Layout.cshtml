@@ -18,12 +18,14 @@
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="~/Content/templatemo_misc.css" rel="stylesheet">
     <link href="~/Content/templatemo_style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Dancing+Script:wght@600&family=Lobster&family=Londrina+Shadow&display=swap" rel="stylesheet">
 
     <script src="~/Scripts/jquery-1.11.1.min.js"></script>
     <script src="~/Scripts/jquery.lightbox.js"></script>
     <script src="~/Scripts/templatemo_custom.js"></script>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="container">
@@ -54,10 +56,10 @@
             <div class="hexagon_container" id="services">
                 <div class="hexagon hexagon2">
                     <div class="hexagon-in1">
-                        <a href="@Url.Action("Staff","Home")">
+                        <a href="@Url.Action("Cart","Home")">
                             <div class="hexagon-in2">
                                 <i class="fa fa-cogs"></i>
-                                <h2>Staff</h2>
+                                <h2>Cart</h2>
                             </div>
                         </a>
                     </div>

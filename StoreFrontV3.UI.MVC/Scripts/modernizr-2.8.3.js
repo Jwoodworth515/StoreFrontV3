@@ -129,7 +129,8 @@ window.Modernizr = (function( window, document, undefined ) {
           fakeBody.style.background = '';
           //Safari 5.13/5.1.4 OSX stops loading if ::-webkit-scrollbar is used and scrollbars are visible
           fakeBody.style.overflow = 'hidden';
-          docOverflow = docElement.style.overflow;
+          docOverflow = doc
+.overflow;
           docElement.style.overflow = 'hidden';
           docElement.appendChild(fakeBody);
       }
@@ -658,7 +659,11 @@ window.Modernizr = (function( window, document, undefined ) {
         //   It works fine in Safari on Leopard and Snow Leopard, but not in Chrome in
         //   some conditions. As a result, Webkit typically recognizes the syntax but
         //   will sometimes throw a false positive, thus we must do a more thorough check:
-        if ( ret && 'webkitPerspective' in docElement.style ) {
+        if (ret && 'webkitPerspective' in doc
+
+
+
+
 
           // Webkit allows this media query to succeed only if the feature is enabled.
           // `@media (transform-3d),(-webkit-transform-3d){ ... }`

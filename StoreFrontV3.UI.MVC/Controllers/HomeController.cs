@@ -17,7 +17,7 @@ namespace StoreFrontV3.UI.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Staff()
+        public ActionResult Cart()
         {
             return View();
         }
