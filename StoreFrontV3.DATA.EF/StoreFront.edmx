@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StoreFrontModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="BrandID" />
+          </Key>
+          <Property Name="BrandID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="City" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="State" Type="char" MaxLength="50" />
+          <Property Name="Country" Type="char" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DeptID" />
+          </Key>
+          <Property Name="DeptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeptName" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="LName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeptID" Type="int" Nullable="false" />
+          <Property Name="DirectReport" Type="varchar" MaxLength="10" />
+          <Property Name="HireDate" Type="date" />
+          <Property Name="Salary" Type="int" />
+        </EntityType>
+        <EntityType Name="Guitar Category">
+          <Key>
+            <PropertyRef Name="GuitarCategoryID" />
+          </Key>
+          <Property Name="GuitarCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GuitarCategory" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="GuitarInventory">
+          <Key>
+            <PropertyRef Name="GuitarInventoryID" />
+          </Key>
+          <Property Name="GuitarInventoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GuitarInventoryName" Type="char" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Guitars">
+          <Key>
+            <PropertyRef Name="GuitarID" />
+          </Key>
+          <Property Name="GuitarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GuitarModel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GuitarDescription" Type="nvarchar(max)" />
+          <Property Name="GuitarImage" Type="varchar" MaxLength="100" />
+          <Property Name="Price" Type="money" />
+          <Property Name="UnitsInStock" Type="int" />
+          <Property Name="UnitsOnOrder" Type="int" />
+          <Property Name="UnitsSold" Type="int" />
+          <Property Name="ProductionDate" Type="date" Nullable="false" />
+          <Property Name="BrandID" Type="int" />
+          <Property Name="GuitarInventoryID" Type="int" Nullable="false" />
+          <Property Name="GuitarCategory" Type="int" Nullable="false" />
+          <Property Name="DeptID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Employees_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DeptID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="DeptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guitars_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+          <End Role="Guitars" Type="Self.Guitars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="Guitars">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guitars_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Guitars" Type="Self.Guitars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DeptID" />
+            </Principal>
+            <Dependent Role="Guitars">
+              <PropertyRef Name="DeptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guitars_Guitar Category">
+          <End Role="Guitar Category" Type="Self.Guitar Category" Multiplicity="1" />
+          <End Role="Guitars" Type="Self.Guitars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guitar Category">
+              <PropertyRef Name="GuitarCategoryID" />
+            </Principal>
+            <Dependent Role="Guitars">
+              <PropertyRef Name="GuitarCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guitars_GuitarInventory">
+          <End Role="GuitarInventory" Type="Self.GuitarInventory" Multiplicity="1" />
+          <End Role="Guitars" Type="Self.Guitars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GuitarInventory">
+              <PropertyRef Name="GuitarInventoryID" />
+            </Principal>
+            <Dependent Role="Guitars">
+              <PropertyRef Name="GuitarInventoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreFrontModelStoreContainer">
+          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guitar Category" EntityType="Self.Guitar Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GuitarInventory" EntityType="Self.GuitarInventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guitars" EntityType="Self.Guitars" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employees_Department" Association="Self.FK_Employees_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Guitars_Brand" Association="Self.FK_Guitars_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Guitars" EntitySet="Guitars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Guitars_Department" Association="Self.FK_Guitars_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Guitars" EntitySet="Guitars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Guitars_Guitar Category" Association="Self.FK_Guitars_Guitar Category">
+            <End Role="Guitar Category" EntitySet="Guitar Category" />
+            <End Role="Guitars" EntitySet="Guitars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Guitars_GuitarInventory" Association="Self.FK_Guitars_GuitarInventory">
+            <End Role="GuitarInventory" EntitySet="GuitarInventory" />
+            <End Role="Guitars" EntitySet="Guitars" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StoreFrontModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="BrandID" />
+          </Key>
+          <Property Name="BrandID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Guitars" Relationship="Self.FK_Guitars_Brand" FromRole="Brand" ToRole="Guitars" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DeptID" />
+          </Key>
+          <Property Name="DeptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeptName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Department" FromRole="Department" ToRole="Employees" />
+          <NavigationProperty Name="Guitars" Relationship="Self.FK_Guitars_Department" FromRole="Department" ToRole="Guitars" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="LName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="DeptID" Type="Int32" Nullable="false" />
+          <Property Name="DirectReport" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="Salary" Type="Int32" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Employees_Department" FromRole="Employees" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="Guitar_Category">
+          <Key>
+            <PropertyRef Name="GuitarCategoryID" />
+          </Key>
+          <Property Name="GuitarCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuitarCategory" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Guitars" Relationship="Self.FK_Guitars_Guitar_Category" FromRole="Guitar_Category" ToRole="Guitars" />
+        </EntityType>
+        <EntityType Name="GuitarInventory">
+          <Key>
+            <PropertyRef Name="GuitarInventoryID" />
+          </Key>
+          <Property Name="GuitarInventoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuitarInventoryName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Guitars" Relationship="Self.FK_Guitars_GuitarInventory" FromRole="GuitarInventory" ToRole="Guitars" />
+        </EntityType>
+        <EntityType Name="Guitar">
+          <Key>
+            <PropertyRef Name="GuitarID" />
+          </Key>
+          <Property Name="GuitarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuitarModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GuitarDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GuitarImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UnitsInStock" Type="Int32" />
+          <Property Name="UnitsOnOrder" Type="Int32" />
+          <Property Name="UnitsSold" Type="Int32" />
+          <Property Name="ProductionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BrandID" Type="Int32" />
+          <Property Name="GuitarInventoryID" Type="Int32" Nullable="false" />
+          <Property Name="GuitarCategory" Type="Int32" Nullable="false" />
+          <Property Name="DeptID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Brand" Relationship="Self.FK_Guitars_Brand" FromRole="Guitars" ToRole="Brand" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Guitars_Department" FromRole="Guitars" ToRole="Department" />
+          <NavigationProperty Name="Guitar_Category" Relationship="Self.FK_Guitars_Guitar_Category" FromRole="Guitars" ToRole="Guitar_Category" />
+          <NavigationProperty Name="GuitarInventory" Relationship="Self.FK_Guitars_GuitarInventory" FromRole="Guitars" ToRole="GuitarInventory" />
+        </EntityType>
+        <Association Name="FK_Guitars_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+          <End Role="Guitars" Type="Self.Guitar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="Guitars">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DeptID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="DeptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guitars_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Guitars" Type="Self.Guitar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DeptID" />
+            </Principal>
+            <Dependent Role="Guitars">
+              <PropertyRef Name="DeptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guitars_Guitar_Category">
+          <End Role="Guitar_Category" Type="Self.Guitar_Category" Multiplicity="1" />
+          <End Role="Guitars" Type="Self.Guitar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guitar_Category">
+              <PropertyRef Name="GuitarCategoryID" />
+            </Principal>
+            <Dependent Role="Guitars">
+              <PropertyRef Name="GuitarCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guitars_GuitarInventory">
+          <End Role="GuitarInventory" Type="Self.GuitarInventory" Multiplicity="1" />
+          <End Role="Guitars" Type="Self.Guitar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GuitarInventory">
+              <PropertyRef Name="GuitarInventoryID" />
+            </Principal>
+            <Dependent Role="Guitars">
+              <PropertyRef Name="GuitarInventoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreFrontEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Brands" EntityType="Self.Brand" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Guitar_Categories" EntityType="Self.Guitar_Category" />
+          <EntitySet Name="GuitarInventories" EntityType="Self.GuitarInventory" />
+          <EntitySet Name="Guitars" EntityType="Self.Guitar" />
+          <AssociationSet Name="FK_Guitars_Brand" Association="Self.FK_Guitars_Brand">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Guitars" EntitySet="Guitars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Department" Association="Self.FK_Employees_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Guitars_Department" Association="Self.FK_Guitars_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Guitars" EntitySet="Guitars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Guitars_Guitar_Category" Association="Self.FK_Guitars_Guitar_Category">
+            <End Role="Guitar_Category" EntitySet="Guitar_Categories" />
+            <End Role="Guitars" EntitySet="Guitars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Guitars_GuitarInventory" Association="Self.FK_Guitars_GuitarInventory">
+            <End Role="GuitarInventory" EntitySet="GuitarInventories" />
+            <End Role="Guitars" EntitySet="Guitars" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StoreFrontModelStoreContainer" CdmEntityContainer="StoreFrontEntities">
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="StoreFrontModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="StoreFrontModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="StoreFrontModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="DirectReport" ColumnName="DirectReport" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guitar_Categories">
+            <EntityTypeMapping TypeName="StoreFrontModel.Guitar_Category">
+              <MappingFragment StoreEntitySet="Guitar Category">
+                <ScalarProperty Name="GuitarCategoryID" ColumnName="GuitarCategoryID" />
+                <ScalarProperty Name="GuitarCategory" ColumnName="GuitarCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GuitarInventories">
+            <EntityTypeMapping TypeName="StoreFrontModel.GuitarInventory">
+              <MappingFragment StoreEntitySet="GuitarInventory">
+                <ScalarProperty Name="GuitarInventoryID" ColumnName="GuitarInventoryID" />
+                <ScalarProperty Name="GuitarInventoryName" ColumnName="GuitarInventoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guitars">
+            <EntityTypeMapping TypeName="StoreFrontModel.Guitar">
+              <MappingFragment StoreEntitySet="Guitars">
+                <ScalarProperty Name="GuitarID" ColumnName="GuitarID" />
+                <ScalarProperty Name="GuitarModel" ColumnName="GuitarModel" />
+                <ScalarProperty Name="GuitarDescription" ColumnName="GuitarDescription" />
+                <ScalarProperty Name="GuitarImage" ColumnName="GuitarImage" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
+                <ScalarProperty Name="UnitsOnOrder" ColumnName="UnitsOnOrder" />
+                <ScalarProperty Name="UnitsSold" ColumnName="UnitsSold" />
+                <ScalarProperty Name="ProductionDate" ColumnName="ProductionDate" />
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="GuitarInventoryID" ColumnName="GuitarInventoryID" />
+                <ScalarProperty Name="GuitarCategory" ColumnName="GuitarCategory" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="816ab3071e1245b684003afbedbec8cc" Name="Diagram1">
+        <EntityTypeShape EntityType="StoreFrontModel.Brand" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Department" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Employee" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Guitar_Category" Width="1.5" PointX="3.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.GuitarInventory" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Guitar" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="StoreFrontModel.FK_Guitars_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Employees_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Guitars_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Guitars_Guitar_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Guitars_GuitarInventory" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

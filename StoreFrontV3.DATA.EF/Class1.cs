@@ -8,5 +8,6 @@ namespace StoreFrontV3.DATA.EF
 {
     public class Class1
     {
+
     }
 }
