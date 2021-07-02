@@ -31,5 +31,6 @@ namespace StoreFrontV3.DATA.EF
         public virtual DbSet<Guitar_Category> Guitar_Categories { get; set; }
         public virtual DbSet<GuitarInventory> GuitarInventories { get; set; }
         public virtual DbSet<Guitar> Guitars { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

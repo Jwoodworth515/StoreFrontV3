@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StoreFrontModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="StoreFrontModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="BrandID" />
@@ -12,8 +12,8 @@
           <Property Name="BrandID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BrandName" Type="char" MaxLength="20" Nullable="false" />
           <Property Name="City" Type="char" MaxLength="20" Nullable="false" />
-          <Property Name="State" Type="char" MaxLength="50" />
-          <Property Name="Country" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="char" MaxLength="2" />
+          <Property Name="Country" Type="char" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -27,12 +27,12 @@
             <PropertyRef Name="EmpID" />
           </Key>
           <Property Name="EmpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FName" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="LName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="FName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="LName" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="DeptID" Type="int" Nullable="false" />
-          <Property Name="DirectReport" Type="varchar" MaxLength="10" />
+          <Property Name="DirectReport" Type="varchar" MaxLength="20" />
           <Property Name="HireDate" Type="date" />
-          <Property Name="Salary" Type="int" />
+          <Property Name="Salary" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Guitar Category">
           <Key>
@@ -65,6 +65,16 @@
           <Property Name="GuitarInventoryID" Type="int" Nullable="false" />
           <Property Name="GuitarCategory" Type="int" Nullable="false" />
           <Property Name="DeptID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Employees_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
@@ -133,6 +143,7 @@
           <EntitySet Name="Guitar Category" EntityType="Self.Guitar Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GuitarInventory" EntityType="Self.GuitarInventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Guitars" EntityType="Self.Guitars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Employees_Department" Association="Self.FK_Employees_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="Employees" EntitySet="Employees" />
@@ -154,8 +165,7 @@
             <End Role="Guitars" EntitySet="Guitars" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StoreFrontModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -166,8 +176,8 @@
           <Property Name="BrandID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BrandName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="State" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Guitars" Relationship="Self.FK_Guitars_Brand" FromRole="Brand" ToRole="Guitars" />
         </EntityType>
         <EntityType Name="Department">
@@ -184,10 +194,10 @@
             <PropertyRef Name="EmpID" />
           </Key>
           <Property Name="EmpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="LName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="LName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="DeptID" Type="Int32" Nullable="false" />
-          <Property Name="DirectReport" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DirectReport" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="HireDate" Type="DateTime" Precision="0" />
           <Property Name="Salary" Type="Int32" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Employees_Department" FromRole="Employees" ToRole="Department" />
@@ -317,7 +327,18 @@
             <End Role="GuitarInventory" EntitySet="GuitarInventories" />
             <End Role="Guitars" EntitySet="Guitars" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="StoreFrontModel.sysdiagram" />
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -388,6 +409,17 @@
                 <ScalarProperty Name="GuitarInventoryID" ColumnName="GuitarInventoryID" />
                 <ScalarProperty Name="GuitarCategory" ColumnName="GuitarCategory" />
                 <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="StoreFrontModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
