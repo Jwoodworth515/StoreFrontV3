@@ -98,3 +98,10 @@ body.blurred > * {
   top: 48%;
   background-image: url("../images/previous.png");
 }
+
+.pushItDown {
+    margin-top: 27em;
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
+}

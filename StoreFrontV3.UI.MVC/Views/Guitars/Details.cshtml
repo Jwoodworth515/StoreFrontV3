@@ -1,0 +1,112 @@
+﻿@model StoreFrontV3.DATA.EF.Guitar
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+<br />
+    <dl class="dl-horizontal pushItDown">
+        <dt>
+            @Html.DisplayNameFor(model => model.GuitarModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuitarModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuitarDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuitarDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuitarImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuitarImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitsInStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitsInStock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitsOnOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitsOnOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitsSold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitsSold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand.BrandName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand.BrandName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.DeptName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.DeptName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Guitar_Category.GuitarCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guitar_Category.GuitarCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuitarInventory.GuitarInventoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuitarInventory.GuitarInventoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GuitarID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
