@@ -183,6 +183,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\BGuitarMap.PNG" />
     <Content Include="Content\bx_loader.gif" />
     <Content Include="Content\close.png" />
     <Content Include="Content\font-awesome.min.css" />
@@ -359,7 +360,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\css\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="_Archive\OGFiles\OGfonts\glyphicons-halflings-regular.woff2" />
