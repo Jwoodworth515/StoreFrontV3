@@ -33,34 +33,44 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.GuitarImage)*@
-            <img src="~/Content/images/Guitars/@item.GuitarImage" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brand.BrandName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GuitarModel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GuitarDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td></td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.GuitarID }) 
-            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-            {
-                @:|
-                @Html.ActionLink("Edit", "Edit", new { id = item.GuitarID }) @:|
-                @Html.ActionLink("Delete", "Delete", new { id = item.GuitarID })
-            }
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.GuitarImage)*@
+                <img src="~/Content/images/Guitars/ThumbNails/@item.GuitarImage" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuitarModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuitarDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td></td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.GuitarID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.GuitarID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.GuitarID }) |
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    @:|
+                    @Html.ActionLink("Edit", "Edit", new { id = item.GuitarID }) @:|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.GuitarID })
+                }
+                else if (item.GuitarInventoryID == 4)
+                {
+                    <span class="text-danger">Discontinued</span>
+                }
+                else
+                {
+                    <span class="text-danger">In Use</span>
+                }
+            </td>
+        </tr>
     }
 
 </table>

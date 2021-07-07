@@ -39,6 +39,7 @@ namespace StoreFrontV3.UI.MVC.Controllers
         // GET: Guitars/Create
         public ActionResult Create()
         {
+
             ViewBag.BrandID = new SelectList(db.Brands, "BrandID", "BrandName");
             ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName");
             ViewBag.GuitarCategory = new SelectList(db.Guitar_Categories, "GuitarCategoryID", "GuitarCategory");
@@ -51,10 +52,41 @@ namespace StoreFrontV3.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GuitarID,GuitarModel,GuitarDescription,GuitarImage,Price,UnitsInStock,UnitsOnOrder,UnitsSold,ProductionDate,BrandID,GuitarInventoryID,GuitarCategory,DeptID")] Guitar guitar)
+        public ActionResult Create([Bind(Include = "GuitarID,GuitarModel,GuitarDescription,GuitarImage,Price,UnitsInStock,UnitsOnOrder,UnitsSold,ProductionDate,BrandID,GuitarInventoryID,GuitarCategory,DeptID")] Guitar guitar, HttpPostedFileBase guitarImage)
         {
             if (ModelState.IsValid)
             {
+                #region file Upload
+                string imageName = "noImage.png";
+
+                if (guitarImage != null)
+                {
+                    imageName = guitarImage.FileName;
+
+
+                    string ext = imageName.Substring(imageName.LastIndexOf("."));
+
+                    string[] goodExts = new string[] { ".jpeg", ".jpg", ".png", ".gif" };
+
+                    if (goodExts.Contains(ext.ToLower()))
+                    {
+                        imageName = Guid.NewGuid() + ext;
+
+                        guitarImage.SaveAs(Server.MapPath("~/Content/images/Guitars/" + imageName));
+
+                    }
+                    else
+                    {
+                        //imageName = "noImage.png";
+                        ModelState.AddModelError(string.Empty, "Uploaded file type not approved.  Please instead upload a .png, .gif, .jpg, or .jpeg");
+                        return View(guitar);
+                    }
+
+                }
+                guitar.GuitarImage = imageName;
+
+                #endregion
+
                 db.Guitars.Add(guitar);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -91,10 +123,43 @@ namespace StoreFrontV3.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GuitarID,GuitarModel,GuitarDescription,GuitarImage,Price,UnitsInStock,UnitsOnOrder,UnitsSold,ProductionDate,BrandID,GuitarInventoryID,GuitarCategory,DeptID")] Guitar guitar)
+        public ActionResult Edit([Bind(Include = "GuitarID,GuitarModel,GuitarDescription,GuitarImage,Price,UnitsInStock,UnitsOnOrder,UnitsSold,ProductionDate,BrandID,GuitarInventoryID,GuitarCategory,DeptID")] Guitar guitar, HttpPostedFileBase guitarImage)
         {
             if (ModelState.IsValid)
             {
+                #region file Upload
+
+                if (guitarImage != null)
+                {
+                    string imageName = guitarImage.FileName;
+
+                    string ext = imageName.Substring(imageName.LastIndexOf("."));
+
+                    string[] goodExts = new string[] { ".jpeg", ".jpg", ".png", ".gif" };
+
+                    if (goodExts.Contains(ext.ToLower()))
+                    {
+                        imageName = Guid.NewGuid() + ext;
+
+                        guitarImage.SaveAs(Server.MapPath("~/Content/images/Guitars/" + imageName));
+
+                        if (guitar.GuitarImage != null && guitar.GuitarImage != "noImage.png")
+                        {
+                            System.IO.File.Delete(Server.MapPath("~/Content/images/Guitars/" + guitar.GuitarImage));
+                        }
+
+                        guitar.GuitarImage = imageName;
+
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Uploaded file type not approved.  Please instead upload a .png, .gif, .jpg, or .jpeg");
+                        return View(guitar);
+                    }
+                }
+
+                #endregion
+
                 db.Entry(guitar).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -126,7 +191,16 @@ namespace StoreFrontV3.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
             Guitar guitar = db.Guitars.Find(id);
+
+            if (guitar.GuitarImage != null && guitar.GuitarImage != "noImage.png")
+            {
+                System.IO.File.Delete(Server.MapPath("~/Content/images/Guitars/" + guitar.GuitarImage));
+            }
+
+            guitar.GuitarInventoryID = 4;
+            guitar.GuitarImage = "noImage.png";
             db.Guitars.Remove(guitar);
             db.SaveChanges();
             return RedirectToAction("Index");

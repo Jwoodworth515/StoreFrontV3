@@ -1,4 +1,6 @@
-﻿<div id="contact-content">
+﻿@model StoreFrontV3.UI.MVC.Models.ContactViewModel
+
+<div id="contact-content">
     <header>
         <h1>Send us a message</h1>
     </header>
@@ -7,20 +9,53 @@
             <div id="templatemo_map"></div>
             <img src="~/Content/BGuitarMap.PNG" />
         </div>
-        <form action="#" method="post" role="form">
-            <div class="templatemo_form">
-                <input name="fullname" type="text" class="form-control" id="fullname" placeholder="Your Name" maxlength="40">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="templatemo_form">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Your Name" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    @*<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>*@
+                </div>
+                <div class="templatemo_form">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Your Email" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    @*<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>*@
+                </div>
             </div>
             <div class="templatemo_form">
-                <input name="email" type="text" class="form-control" id="email" placeholder="Your Email" maxlength="40">
+                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", placeholder = "Subject" } })
+                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                @*<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>*@
             </div>
             <div class="templatemo_form">
-                <textarea name="message" rows="10" class="form-control" id="message" placeholder="Message"></textarea>
+                @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", placeholder = "Message" } })
+                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                @*<textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>*@
             </div>
             <div class="templatemo_form">
-                <button type="submit" class="btn btn-primary">Send</button>
+                @*<div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your message has been sent. Thank you!</div>*@
+                <div class="text-center"><input type="submit" value="Send Message" /></div>
             </div>
-        </form>
+        }
+        @*<form action="#" method="post" role="form">
+                <div class="templatemo_form">
+                    <input name="fullname" type="text" class="form-control" id="fullname" placeholder="Your Name" maxlength="40">
+                </div>
+                <div class="templatemo_form">
+                    <input name="email" type="text" class="form-control" id="email" placeholder="Your Email" maxlength="40">
+                </div>
+                <div class="templatemo_form">
+                    <textarea name="message" rows="10" class="form-control" id="message" placeholder="Message"></textarea>
+                </div>
+                <div class="templatemo_form">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>*@
         <address class="content-description">
             <i class="fa fa-map-marker"></i>3255 Midway Drive, San Diego, California 92110<br>
             <i class="fa fa-envelope"></i><a href="mailto:Jwoodworth515@gmail.com">contact@B#GuitarShop.com</a><br>
