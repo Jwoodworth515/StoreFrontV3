@@ -7,6 +7,7 @@
     <meta name="author" content="Jacob Woodworth">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!--
 
     Polystar Template
@@ -15,19 +16,73 @@
 
     -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="~/Content/templatemo_misc.css" rel="stylesheet">
-    <link href="~/Content/templatemo_style.css" rel="stylesheet">
+    @*<link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css">*@
+    @*<link href="~/Content/templatemo_misc.css" rel="stylesheet">
+        <link href="~/Content/templatemo_style.css" rel="stylesheet">*@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Dancing+Script:wght@600&family=Lobster&family=Londrina+Shadow&display=swap" rel="stylesheet">
 
-    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
-    <script src="~/Scripts/jquery.lightbox.js"></script>
-    <script src="~/Scripts/templatemo_custom.js"></script>
+    @*<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+        <script src="~/Scripts/jquery.lightbox.js"></script>
+        <script src="~/Scripts/templatemo_custom.js"></script>*@
+
     @Styles.Render("~/Content/css")
+
+    @{
+        int countItems = 0;
+        if ((Dictionary<int, StoreFrontV3.UI.MVC.Models.CartItemViewModel>)Session["cart"] != null && ((Dictionary<int, StoreFrontV3.UI.MVC.Models.CartItemViewModel>)Session["cart"]).Count > 0)
+        {
+            foreach (var item in (Dictionary<int, StoreFrontV3.UI.MVC.Models.CartItemViewModel>)Session["cart"])
+            {
+                countItems += item.Value.Qty;
+            }
+
+            ViewBag.CountItems = countItems;
+        }
+
+    }
+
 </head>
 <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <ul>
+                <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                <li>@Html.ActionLink("Filters", "Clientside", "Filters")</li>
+                <li class="nav-item">
+                    @* ONLY show the cart icon if the session cart exists and has more than 0 items in it*@
+                    @if (Session["cart"] != null && ViewBag.CountItems > 0)
+                    {
+                        <a class="dropdown-item" href="/ShoppingCart/Index">
+                            Cart<i class="fa fa-shopping-cart"></i>
+                            <span class="text-danger">@ViewBag.CountItems</span>
+                        </a>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Cart", "Index", "ShoppingCart")
+                    }
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    @*<div id="sidebar">
+        <div class="inner">
+            <!-- Search Box -->
+            <!-- Menu -->
+            <nav id="menu">
+                <ul>
+                    <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                    <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                    <li>@Html.ActionLink("Filters", "Clientside", "Filters")</li>
+                </ul>
+            </nav>
+        </div>
+    </div>*@
     <div class="container">
         <div class="menu">
             <div class="hexagon_container" id="logo">
@@ -82,12 +137,10 @@
         @RenderBody()
 
     </div>
-    <div class="templatemo_footer">
-        Copyright © 2021 Jacob Woodworth/B# Guitar Shop<br>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+    @Scripts.Render("~/bundles/template")
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript">
@@ -95,5 +148,10 @@
         $('#page_link_2').click({ page_no: 2 }, pagination_click);
         $('#page_link_3').click({ page_no: 3 }, pagination_click);
     </script>
+
+    <div class="templatemo_footer">
+        Copyright © 2021 Jacob Woodworth/B# Guitar Shop<br>
+    </div>
+
 </body>
 </html>

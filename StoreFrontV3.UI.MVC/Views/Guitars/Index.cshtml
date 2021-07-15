@@ -36,7 +36,8 @@
         <tr>
             <td>
                 @*@Html.DisplayFor(modelItem => item.GuitarImage)*@
-                <img src="~/Content/images/Guitars/ThumbNails/@item.GuitarImage" />
+                @*<img src="~/Content/images/Guitars/t_@item.GuitarImage" />*@
+                <a href="~/Content/images/Guitars/@item.GuitarImage" data-rel="lightbox"><img src="~/Content/images/Guitars/t_@item.GuitarImage" /></a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Brand.BrandName)
@@ -53,11 +54,8 @@
             <td></td>
             <td>
                 @Html.ActionLink("Details", "Details", new { id = item.GuitarID }) |
-                @Html.ActionLink("Edit", "Edit", new { id = item.GuitarID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.GuitarID }) |
                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
-                    @:|
                     @Html.ActionLink("Edit", "Edit", new { id = item.GuitarID }) @:|
                     @Html.ActionLink("Delete", "Delete", new { id = item.GuitarID })
                 }

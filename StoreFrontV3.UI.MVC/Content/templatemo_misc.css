@@ -105,3 +105,10 @@ body.blurred > * {
     background-color: rgba(6, 33, 50, .9);
     border: medium solid #000000;
 }
+
+.pushItDownMore {
+    margin-top: 42em;
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
+}

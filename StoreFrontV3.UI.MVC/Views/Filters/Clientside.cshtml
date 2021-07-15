@@ -1,0 +1,111 @@
+﻿@model IEnumerable<StoreFrontV3.DATA.EF.Guitar>
+
+@{
+    ViewBag.Title = "Clientside";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p id="grid">
+    <a href="@Url.Action("GuitarsGrid", "Filters")" class="pull-right btn btn-success">Grid View</a>
+</p>
+<table class="table" id="data-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GuitarModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuitarDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuitarImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitsInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitsOnOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitsSold)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand.BrandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department.DeptName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Guitar_Category.GuitarCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuitarInventory.GuitarInventoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GuitarModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GuitarDescription)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.GuitarImage)*@
+                    <img src="~/Content/images/Guitars/t_@item.GuitarImage" alt="@item.GuitarModel" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitsInStock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitsOnOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitsSold)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductionDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DeptName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Guitar_Category.GuitarCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GuitarInventory.GuitarInventoryName)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.GuitarID }) |*@
+                    @Html.ActionLink("Details", "Details", new { id = item.GuitarID }) @*|
+                        @Html.ActionLink("Delete", "Delete", new { id=item.GuitarID })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#data-table').DataTable();
+        });
+    </script>
+}

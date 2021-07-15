@@ -1,35 +1,28 @@
 ﻿@model StoreFrontV3.DATA.EF.Guitar
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = $"{Model.GuitarModel}";
 }
 
 <div>
-<br />
+    <br />
     <dl class="dl-horizontal pushItDown">
+        <h2>@ViewBag.Title</h2>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand.BrandName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand.BrandName)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.GuitarModel)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.GuitarModel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GuitarDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GuitarDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GuitarImage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GuitarImage)
         </dd>
 
         <dt>
@@ -41,6 +34,38 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Guitar_Category.GuitarCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guitar_Category.GuitarCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuitarDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuitarDescription)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.GuitarImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuitarImage)
+        </dd>*@
+
+        @*<dt>
             @Html.DisplayNameFor(model => model.UnitsInStock)
         </dt>
 
@@ -65,22 +90,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ProductionDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductionDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Brand.BrandName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Brand.BrandName)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Department.DeptName)
         </dt>
 
@@ -89,24 +98,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Guitar_Category.GuitarCategory)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Guitar_Category.GuitarCategory)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.GuitarInventory.GuitarInventoryName)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.GuitarInventory.GuitarInventoryName)
-        </dd>
-
+        </dd>*@
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.GuitarID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+        <p>
+            @using (Html.BeginForm("AddToCart", "Guitars", new { @guitarId = Model.GuitarID }, FormMethod.Post, new { @class = "text-center" }))
+            {
+                @Html.HiddenFor(x => x.GuitarID)
+                <span class="label">Quantity: </span>
+                @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 50px; display: inline;" })
+                <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+            }
+        <p>
+            <img src="~/Content/images/Guitars/@Model.GuitarImage" alt="Book cover" title="@Model.GuitarModel" />
+        </p>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.GuitarID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

@@ -66,6 +66,7 @@ h1 {
     font-weight: 600;
     color: #000000;
     text-transform: uppercase;
+    margin: -2px;
 }
 
 h2 {

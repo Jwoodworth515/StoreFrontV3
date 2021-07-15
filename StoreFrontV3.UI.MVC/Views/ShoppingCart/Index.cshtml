@@ -1,0 +1,90 @@
+﻿@*@model IEnumerable<StoreFrontV3.DATA.EF.Guitar>*@
+
+@model Dictionary<int, StoreFrontV3.UI.MVC.Models.CartItemViewModel>
+
+@{
+    ViewBag.Title = "Shopping Cart";
+
+    decimal? cartTotal = 0;
+    int totalCountOfItems = 0;
+}
+
+<p class="text-right">
+    @Html.ActionLink("Back to Shopping", "Index", "Guitars", null, new { @class = "btn btn-info" })
+</p>
+
+<h2 class="text-right">@ViewBag.Title</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+@if (Model.Count == 0)
+{
+    <p class="alert alert-warning">
+        @ViewBag.Message
+    </p>
+}
+else
+{
+
+
+    <table class="table pushItDown">
+        <tr>
+            <th>Guitar Image</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/Content/images/Guitars/t_@item.Value.Product.GuitarImage" alt="@item.Value.Product.GuitarModel" />
+                </td>
+                <td>
+                    @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
+                    {
+                        @Html.Hidden("guitarID", item.Key)
+                        @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", @style = "max-width: 50px; display: inline" })
+                        <input type="submit" value="Update Quantity" class="btn btn-info" />
+                    }
+
+                    @{
+                        totalCountOfItems += item.Value.Qty;
+                    }
+                </td>
+                <td>@item.Value.Product.GuitarModel</td>
+                <td>@string.Format($"{item.Value.Product.Price:c}")</td>
+                <td>
+                    @{
+                        decimal? lineTotal = item.Value.Product.Price * item.Value.Qty;
+                        cartTotal += lineTotal;
+                    }
+
+                    @string.Format($"{lineTotal:c}")
+                </td>
+                <td>
+                    @Html.ActionLink("Remove from Cart", "RemoveFromCart", new { id = item.Key })
+                </td>
+            </tr>
+
+
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.GuitarID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.GuitarID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.GuitarID })
+                </td>*@
+        }
+
+    </table>
+
+    <p class="alert alert-success text-center">
+        You have @totalCountOfItems item@(totalCountOfItems == 1 ? " " : "s") in your cart.
+        <br />
+        Your total before taxes and shipping is @string.Format($"{cartTotal:c}")
+    </p>
+
+}
