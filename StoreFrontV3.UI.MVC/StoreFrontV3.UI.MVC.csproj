@@ -437,6 +437,7 @@
     <Content Include="Content\next.png" />
     <Content Include="Content\previous.png" />
     <Content Include="Content\templatemo_contactiframe.png" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
@@ -522,7 +523,6 @@
     <Content Include="_Archive\OGFiles\OGContent\bootstrap-theme.min.css" />
     <Content Include="_Archive\OGFiles\OGContent\bootstrap.css" />
     <Content Include="_Archive\OGFiles\OGContent\bootstrap.min.css" />
-    <Content Include="favicon.ico" />
     <Content Include="_Archive\OGFiles\OGfonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="_Archive\OGFiles\OGContent\Site.css" />

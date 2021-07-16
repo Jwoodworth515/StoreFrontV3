@@ -46,12 +46,12 @@
 </head>
 <body>
 
-    <nav @*id="admin-nav" class="side-nav"*@>
+    <nav id="admin-nav" class="side-nav">
             <ul>
                 <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
                 <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
                 <li>@Html.ActionLink("Filters", "Clientside", "Filters")</li>
-                <li @*class="nav-item"*@>
+                <li class="nav-item">
                     @* ONLY show the cart icon if the session cart exists and has more than 0 items in it*@
                     @if (Session["cart"] != null && ViewBag.CountItems > 0)
                     {
