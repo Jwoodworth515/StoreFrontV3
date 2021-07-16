@@ -22,13 +22,14 @@ namespace StoreFrontV3.UI.MVC
             //          "~/Scripts/bootstrap.js",
             //          "~/Scripts/respond.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/template").Include("~/Scripts/jquery-1.11.1.min.js", "~/Scripts/jquery.lightbox.js", "~/Scripts/templatemo_custom.js", "~/Scripts/dataTables/jquery.dataTables.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/template").Include("~/Scripts/jquery-1.11.1.min.js", /*"~/Scripts/bootstrap.min.js"*/ "~/Scripts/jquery.lightbox.js", "~/Scripts/templatemo_custom.js", "~/Scripts/dataTables/jquery.dataTables.min.js"));
 
             bundles.Add(new StyleBundle(
-                "~/Content/css").Include("~/Content/font-awesome.min.css",
+                "~/Content/css").Include(/*"~/Content/bootstrap.min.css"*/ "~/Content/font-awesome.min.css",
                 "~/Content/DataTables/css/jquery.dataTables.min.css",
                 "~/Content/templatemo_misc.css",
-                "~/Content/templatemo_style.css"));
+                "~/Content/templatemo_style.css", 
+                "~/Content/custom.css"));
         }
     }
 }
