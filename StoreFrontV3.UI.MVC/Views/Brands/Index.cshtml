@@ -1,0 +1,218 @@
+﻿@model IEnumerable<StoreFrontV3.DATA.EF.Brand>
+
+@{
+    ViewBag.Title = "Guitar Brands";
+}
+
+<div id="main" class="section">
+    <div class="container">
+        <div id="MessageDisplay" class="row">
+            <div class="col-md-10 col-md-offset-1" id="MessageContent"></div>
+        </div>
+    </div>
+</div>
+
+<h2>@ViewBag.Title</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+<p class="row">
+    <button id="toggleBrandCreate" class="btn btn-primary pull-left">Add New</button>
+    <br />
+</p>
+
+<div id="BrandCreate">
+    @Html.Partial("AjaxCreate", new StoreFrontV3.DATA.EF.Brand())
+</div>
+
+<table class="table" id="BrandsTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BrandName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="Brand-@item.BrandID">
+            <td>
+                @Html.DisplayFor(modelItem => item.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.BrandID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.BrandID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.BrandID })*@
+                <a href="" class="DetailsLink" id="@item.BrandID">Details</a> |
+                <a href="" class="EditLink" id="@item.BrandID">Edit</a> |
+
+                @Ajax.ActionLink("Delete", "AjaxDelete", "Brands", new { id = item.BrandID}, new AjaxOptions {
+        HttpMethod = "POST",
+        Confirm = $"Are you sure you want to delete {item.BrandName} from brands?",
+        OnSuccess = "deleteConfirmed",
+        OnFailure = "deleteFailed"
+    })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="PublisherDetails"></div>
+
+@section scripts {
+    <script>
+        //***************** AJAX DELETE **********************//
+        function deleteConfirmed(response, status, data) {
+            var rowId = "#Brand-" + response.id;
+            $("#BrandsTable").find(rowId).remove();
+
+            $('#MessageContent').html('<div class="alert alert-success">' + response.message + '</div>');
+        }
+
+        function deleteFailed(response, status, data) {
+            $('#MessageContent').html("<div class='alert alert-danger'>Delete unsuccessful. Is this brand referenced by a guitar? If so, change the guitar's Brand or delete the guitar.</div>");
+        }
+
+        //*********** Details ***************//
+        $('a.DetailsLink').click(function (e) {
+            e.preventDefault();
+            $("#BrandDetails").data('bId', $(this).attr('id')).dialog({
+                width: 400,
+                height: 200,
+                open: function () {
+                    var pubID = $(this).data('bId');
+                    $(this).load(`/Brands/BrandDetails/${pubID}`);
+                },
+                title: "Brand Details",
+                modal: true,
+                resizable: false
+            });
+        });
+
+        //*********** Create **************//
+        $('#BrandCreate').hide();
+        $('#toggleBrandCreate').click(function () {
+            $('#BrandCreate').toggle();
+        });
+
+        $('#BrandCreateForm').submit(function (e) {
+            var formData = $(this).serializeArray();
+            console.log(formData);
+            e.preventDefault();
+
+            $.ajax({
+                url: "/Brands/AjaxCreate",
+                type: "POST",
+                data: formData,
+                dataType: "json",
+                error: function (e) {
+                    $('#MessageContent').html("<div class='alert alert-danger'>There was a problem!</div>");
+                },
+                success: function (fat) {
+                    var row = '<tr><td>' + fat.BrandName + '</td>' +
+                        '<td>' + fat.City + '</td>' +
+                        '<td>' + fat.State + '</td>' +
+                        '<td>' + fat.Country;
+
+                    $('#BrandsTable').append(row);
+
+                    $('#MessageContent').html('<div class="alert alert-success">Record Added!</div>');
+
+                    //Reset the form
+                    $("#BrandCreateForm")[0].reset();
+                }
+            });
+        });
+
+
+        //********* Edit *************//
+        var originalContent = null;
+
+        $('a.EditLink').click(function (e) {
+            e.preventDefault();
+            var brandID = $(this).attr("id");
+
+            var row = $('#Brand-' + brandID).children();
+            console.log(row);
+
+            originalContent = {
+                BrandID: brandID,
+                BrandName: row[0].innerText,
+                City: row[1].innerText,
+                State: row[2].innerText,
+                Country: row[3].innerText,
+            };
+
+            console.log("Original Content", originalContent);
+            $.get("/Brands/BrandEdit/" + brandID, function (data) {
+                $('#Brand-' + brandID).replaceWith(
+                    '<tr id="Brand-' + brandID + '"><td colspan="5">' + data + '</td></tr>'
+                );
+            });
+
+
+
+            //Submitting the Edit Form
+            $(document).on("click", "#saveUpdate", function () {
+                var formData = $("#BrandEditForm").serializeArray();
+
+                $('#MessageContent').html("<div class='alert alert-warning'>Please wait...</div>");
+
+                $.ajax({
+                    url: "/Brands/AjaxEdit",
+                    type: "POST",
+                    data: formData,
+                    dataType: "json",
+                    success: function (data) {
+
+                        $('#MessageContent').html("<div class='alert alert-success'>Your Record was Successfully Updated!</div>");
+                        $('#BrandEditForm')[0].reset();
+
+                        $(function () {
+                            var row = '<tr>' +
+                                '<td>' + data.BrandName + '</td>' +
+                                '<td> ' + data.City + '</td>' +
+                                '<td>' + data.State + '</td>' +
+                                '<td>' + data.Country + '</td>';
+
+                            $('#Brand-' + data.BrandID).replaceWith(row);
+                        });
+                    },
+                    error: function (e) {
+                        $('#MessageContent').html("<div class='alert alert-warning'>There was an error. Please try again or contact the site administrator.</div>");
+                        $(function () {
+                            var row = '<tr id="Brand-' + originalContent.BrandId + '"> <td>' + originalContent.BrandName +
+                                '</td><td>' + originalContent.City +
+                                '</td><td>' + originalContent.State +
+                                '</td><td>' + originalContent.Country;
+
+                            $('#Brand-' + data.BrandID).replaceWith(row);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}
+

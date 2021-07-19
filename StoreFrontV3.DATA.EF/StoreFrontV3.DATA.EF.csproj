@@ -50,6 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>StoreFront.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>StoreFront.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>StoreFront.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>StoreFront.tt</DependentUpon>
+    </Compile>
     <Compile Include="Brand.cs">
       <DependentUpon>StoreFront.tt</DependentUpon>
     </Compile>
@@ -86,6 +98,9 @@
     </Compile>
     <Compile Include="StoreFrontV3Metadata\StoreFrontV3Metadata.cs" />
     <Compile Include="sysdiagram.cs">
+      <DependentUpon>StoreFront.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserDetail.cs">
       <DependentUpon>StoreFront.tt</DependentUpon>
     </Compile>
   </ItemGroup>

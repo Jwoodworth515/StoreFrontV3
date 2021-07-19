@@ -16,6 +16,15 @@
         <AssociationConnector Association="StoreFrontModel.FK_Guitars_Department" ManuallyRouted="false" />
         <AssociationConnector Association="StoreFrontModel.FK_Guitars_Guitar_Category" ManuallyRouted="false" />
         <AssociationConnector Association="StoreFrontModel.FK_Guitars_GuitarInventory" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="StoreFrontModel.AspNetRole" Width="1.5" PointX="8.375" PointY="3.875" />
+        <EntityTypeShape EntityType="StoreFrontModel.AspNetUserClaim" Width="1.5" PointX="12.875" PointY="6.25" />
+        <EntityTypeShape EntityType="StoreFrontModel.AspNetUserLogin" Width="1.5" PointX="12.875" PointY="3.75" />
+        <EntityTypeShape EntityType="StoreFrontModel.AspNetUser" Width="1.5" PointX="10.625" PointY="2.625" />
+        <EntityTypeShape EntityType="StoreFrontModel.UserDetail" Width="1.5" PointX="12.875" PointY="1.125" />
+        <AssociationConnector Association="StoreFrontModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="StoreFrontModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="StoreFrontModel.FK_UserDetails_AspNetUsers" />
+        <AssociationConnector Association="StoreFrontModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

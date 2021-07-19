@@ -1,8 +1,8 @@
 ﻿@model StoreFrontV3.UI.MVC.Models.LoginViewModel
 
-@{
-    ViewBag.Title = "";
-}
+@*@{
+    ViewBag.Title = "Login";
+}*@
 
 <h2>@ViewBag.Title.</h2>
 <div class="row pushItDown">
@@ -40,18 +40,30 @@
                         <input type="submit" value="Log in" class="btn btn-default" />
                     </div>
                 </div>
-                <p>
+                @*<p>
                     @Html.ActionLink("Register a new user?", "Register")
                 </p>
                 <p>
                     @Html.ActionLink("Forget your password?", "ForgotPassword")
-                </p>
+                </p>*@
             }
         </section>
     </div>
     <div class="col-md-4">
-        <section id="socialLoginForm">
+        @*<section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new StoreFrontV3.UI.MVC.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>*@
+        <section>
+            <h4>Need help logging in?</h4>
+            <hr/>
+            <div>
+                <p>
+                    @Html.ActionLink("register a new user?", "Register")
+                </p>
+                <p>
+                    @Html.ActionLink("Forget your password?", "ForgotPassword")
+                </p>
+            </div>
         </section>
     </div>
 </div>

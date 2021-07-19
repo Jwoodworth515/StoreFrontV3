@@ -32,5 +32,10 @@ namespace StoreFrontV3.DATA.EF
         public virtual DbSet<GuitarInventory> GuitarInventories { get; set; }
         public virtual DbSet<Guitar> Guitars { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<UserDetail> UserDetails { get; set; }
     }
 }

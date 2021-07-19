@@ -1,6 +1,6 @@
 ﻿.side-nav {
     height: 100%;
-    width: 500px;
+    width: 0;
     position: fixed;
     z-index: 1030;
     top: 0;
@@ -9,4 +9,46 @@
     overflow-x: hidden;
     padding-top: 100px;
     transition: .5s;
+}
+
+.sidenav a {
+padding: 8px 8px 8px 32px;
+text-decoration: none;
+font-size: 25px;
+color: #818181;
+display: block;
+transition: .3s;
+}
+
+/*.sidenav a:hover {
+color: #f1f1f1;
+}*/
+
+.close-btn {
+position: absolute;
+top: 50px;
+right: 25px;
+font-size: 36px !important;
+margin-left: 50px;
+}
+
+.button {
+font-family: sans-serif;
+background: rgba(0,0,0,.5);
+height: 100%;
+width: 20px;
+z-index: 1030;
+position: fixed;
+left: 0;
+top: 0;
+cursor: pointer;
+}
+
+.vertical-text {
+position: absolute;
+top: 45%;
+left: 0;
+writing-mode: vertical-lr;
+color: white;
+font-weight: bold;
 }

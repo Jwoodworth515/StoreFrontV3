@@ -45,42 +45,53 @@
 
 </head>
 <body>
-
+    <div id="admin-btn" class="button" onclick="openAdminNav()">
+        <span class="vertical-text">Menu</span>
+    </div>
+    &#9776;
     <nav id="admin-nav" class="side-nav">
-            <ul>
-                <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
-                <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
-                <li>@Html.ActionLink("Filters", "Clientside", "Filters")</li>
-                <li class="nav-item">
-                    @* ONLY show the cart icon if the session cart exists and has more than 0 items in it*@
-                    @if (Session["cart"] != null && ViewBag.CountItems > 0)
-                    {
-                        <a class="dropdown-item" href="/ShoppingCart/Index">
-                            Cart<i class="fa fa-shopping-cart"></i>
-                            <span class="text-danger">@ViewBag.CountItems</span>
-                        </a>
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Cart", "Index", "ShoppingCart")
-                    }
-                </li>
-            </ul>
+        <a href="javascript:void(0)" class="close-btn" onclick="closeAdminNav()">&times;</a>
+        <ul>
+            <li>@Html.ActionLink("Admin", "Index", "RolesAdmin")</li>
+            <li>@Html.ActionLink("Users", "Index", "UsersAdmin")</li>
+            <li>@Html.ActionLink("Brands", "Index", "Brands")</li>
+            <li>@Html.ActionLink("Search/Filters", "Clientside", "Filters")</li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+                <div class="dropdown-menu account-dropdown" style="background-color: #0A2433;">
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </li>
+            <li class="nav-item">
+                @* ONLY show the cart icon if the session cart exists and has more than 0 items in it*@
+                @if (Session["cart"] != null && ViewBag.CountItems > 0)
+                {
+                    <a class="dropdown-item" href="/ShoppingCart/Index">
+                        Cart<i class="fa fa-shopping-cart"></i>
+                        <span class="text-danger">@ViewBag.CountItems</span>
+                    </a>
+                }
+                else
+                {
+                    @Html.ActionLink("Cart", "Index", "ShoppingCart")
+                }
+            </li>
+        </ul>
     </nav>
 
     @*<div id="sidebar">
-        <div class="inner">
-            <!-- Search Box -->
-            <!-- Menu -->
-            <nav id="menu">
-                <ul>
-                    <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
-                    <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
-                    <li>@Html.ActionLink("Filters", "Clientside", "Filters")</li>
-                </ul>
-            </nav>
-        </div>
-    </div>*@
+            <div class="inner">
+                <!-- Search Box -->
+                <!-- Menu -->
+                <nav id="menu">
+                    <ul>
+                        <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                        <li>@Html.ActionLink("Filters", "Clientside", "Filters")</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>*@
     <div class="container">
         <div class="menu">
             <div class="hexagon_container" id="logo">
@@ -150,6 +161,22 @@
     <div class="templatemo_footer">
         Copyright © 2021 Jacob Woodworth/B# Guitar Shop<br>
     </div>
+
+    <script>
+        function openAdminNav() {
+            document.getElementById('admin-btn').style.display = "none";
+            document.getElementById('admin-nav').style.width = "150px";
+        }
+
+        function closeAdminNav() {
+            document.getElementById('admin-btn').style.display = "block";
+            document.getElementById('admin-nav').style.width = "0";
+        }
+    </script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
+
 
 </body>
 </html>

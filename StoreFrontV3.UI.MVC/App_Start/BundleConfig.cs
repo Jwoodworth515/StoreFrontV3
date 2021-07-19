@@ -27,9 +27,11 @@ namespace StoreFrontV3.UI.MVC
             bundles.Add(new StyleBundle(
                 "~/Content/css").Include(/*"~/Content/bootstrap.min.css"*/ "~/Content/font-awesome.min.css",
                 "~/Content/DataTables/css/jquery.dataTables.min.css",
+                "~/Content/PagedList.css",
                 "~/Content/templatemo_misc.css",
                 "~/Content/templatemo_style.css", 
-                "~/Content/custom.css"));
+                "~/Content/custom.css"
+                ));
         }
     }
 }

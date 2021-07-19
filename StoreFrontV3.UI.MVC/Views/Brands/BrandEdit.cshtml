@@ -1,0 +1,34 @@
+﻿@model StoreFrontV3.DATA.EF.Brand
+
+@using (Html.BeginForm("AjaxEdit", "Brands", FormMethod.Post, new { id = "BrandEditForm" }))
+{
+    @Html.AntiForgeryToken()
+    <table>
+        <tr>
+            @Html.HiddenFor(model => model.BrandID)
+            <td>
+                @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control", style = "width: 400px;" } })
+                @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", style = "width: 65px; margin-right: 66px;" } })
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger", style = "margin-right: 126px;" })
+            </td>
+            <td>
+                <input type="button" id="saveUpdate" value="Update Brand" class="btn btn-success" />
+            </td>
+        </tr>
+    </table>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
