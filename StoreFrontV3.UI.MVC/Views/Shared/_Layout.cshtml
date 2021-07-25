@@ -8,24 +8,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--
-
-    Polystar Template
-
-    http://www.templatemo.com/tm-408-polystar
-
-    -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-    @*<link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css">*@
-    @*<link href="~/Content/templatemo_misc.css" rel="stylesheet">
-        <link href="~/Content/templatemo_style.css" rel="stylesheet">*@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Dancing+Script:wght@600&family=Lobster&family=Londrina+Shadow&display=swap" rel="stylesheet">
-
-    @*<script src="~/Scripts/jquery-1.11.1.min.js"></script>
-        <script src="~/Scripts/jquery.lightbox.js"></script>
-        <script src="~/Scripts/templatemo_custom.js"></script>*@
 
     @Styles.Render("~/Content/css")
 
@@ -52,18 +38,15 @@
     <nav id="admin-nav" class="side-nav">
         <a href="javascript:void(0)" class="close-btn" onclick="closeAdminNav()">&times;</a>
         <ul>
-            <li>@Html.ActionLink("Admin", "Index", "RolesAdmin")</li>
-            <li>@Html.ActionLink("Users", "Index", "UsersAdmin")</li>
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Team", "Team", "Home")</li>
+            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <li>@Html.ActionLink("Shop", "Index", "Guitars")</li>
+            <li style="background-color: #0A2433;">@Html.Partial("_LoginPartial")</li>
+            <li style="background-color: #0A2433;">@Html.ActionLink("Admin Login", "Login", "Account")</li>
+            <li>@Html.ActionLink("Guitar Search", "Clientside", "Filters")</li>
             <li>@Html.ActionLink("Brands", "Index", "Brands")</li>
-            <li>@Html.ActionLink("Search/Filters", "Clientside", "Filters")</li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
-                <div class="dropdown-menu account-dropdown" style="background-color: #0A2433;">
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </li>
             <li class="nav-item">
-                @* ONLY show the cart icon if the session cart exists and has more than 0 items in it*@
                 @if (Session["cart"] != null && ViewBag.CountItems > 0)
                 {
                     <a class="dropdown-item" href="/ShoppingCart/Index">
@@ -79,19 +62,6 @@
         </ul>
     </nav>
 
-    @*<div id="sidebar">
-            <div class="inner">
-                <!-- Search Box -->
-                <!-- Menu -->
-                <nav id="menu">
-                    <ul>
-                        <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
-                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
-                        <li>@Html.ActionLink("Filters", "Clientside", "Filters")</li>
-                    </ul>
-                </nav>
-            </div>
-        </div>*@
     <div class="container">
         <div class="menu">
             <div class="hexagon_container" id="logo">
@@ -111,7 +81,7 @@
                         <a href="@Url.Action("Team","Home")">
                             <div class="hexagon-in2">
                                 <i class="fa fa-user"></i>
-                                <h2>TEAM</h2>
+                                <h2>Team</h2>
                             </div>
                         </a>
                     </div>
@@ -135,20 +105,16 @@
                         <a href="@Url.Action("Contact","Home")">
                             <div class="hexagon-in2">
                                 <i class="fa fa-envelope"></i>
-                                <h2>CONTACT</h2>
+                                <h2>Contact</h2>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-
         @RenderBody()
-
     </div>
 
-    @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")*@
     @Scripts.Render("~/bundles/template")
     @RenderSection("scripts", required: false)
 
@@ -176,7 +142,6 @@
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
-
 
 </body>
 </html>

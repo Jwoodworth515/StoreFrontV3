@@ -7,8 +7,9 @@
 <div>
     <br />
     <dl class="dl-horizontal pushItDown">
-        <h2>@ViewBag.Title</h2>
-
+        @*<h2>@ViewBag.Title</h2>*@
+        <h4>Guitar Details</h4>
+        <hr />
         <dt>
             @Html.DisplayNameFor(model => model.Brand.BrandName)
         </dt>
@@ -105,19 +106,20 @@
             @Html.DisplayFor(model => model.GuitarInventory.GuitarInventoryName)
         </dd>*@
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.GuitarID }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
-        <p>
-            @using (Html.BeginForm("AddToCart", "Guitars", new { @guitarId = Model.GuitarID }, FormMethod.Post, new { @class = "text-center" }))
+            @using (Html.BeginForm("AddToCart", "Guitars", new { @guitarId = Model.GuitarID }, FormMethod.Post, new { @class = "pushItDownSome" }))
             {
                 @Html.HiddenFor(x => x.GuitarID)
                 <span class="label">Quantity: </span>
-                @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 50px; display: inline;" })
+                @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 15px; display: inline;" })
                 <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
             }
+        </p>
         <p>
             <img src="~/Content/images/Guitars/@Model.GuitarImage" alt="Book cover" title="@Model.GuitarModel" />
+        </p>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.GuitarID }) |
+            @Html.ActionLink("Back to List", "Index")
         </p>
     </dl>
 </div>

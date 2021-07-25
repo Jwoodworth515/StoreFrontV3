@@ -4,9 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<br />
+
 <table class="table pushItDown">
     <tr>
         <th>
@@ -34,38 +33,36 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td style="padding: 4px;">
                 @*@Html.DisplayFor(modelItem => item.GuitarImage)*@
                 @*<img src="~/Content/images/Guitars/t_@item.GuitarImage" />*@
                 <a href="~/Content/images/Guitars/@item.GuitarImage" data-rel="lightbox"><img src="~/Content/images/Guitars/t_@item.GuitarImage" /></a>
             </td>
-            <td>
+            <td style="padding: 4px;">
                 @Html.DisplayFor(modelItem => item.Brand.BrandName)
             </td>
-            <td>
+            <td style="padding: 15px;">
                 @Html.DisplayFor(modelItem => item.GuitarModel)
             </td>
-            <td>
+            <td style="padding: 8px;">
                 @Html.DisplayFor(modelItem => item.GuitarDescription)
             </td>
-            <td>
+            <td style="padding: 4px;">
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td></td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.GuitarID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.GuitarID })
                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
+                    @:|
+                    @Html.ActionLink("Create New", "Create") @:|
                     @Html.ActionLink("Edit", "Edit", new { id = item.GuitarID }) @:|
                     @Html.ActionLink("Delete", "Delete", new { id = item.GuitarID })
                 }
                 else if (item.GuitarInventoryID == 4)
                 {
                     <span class="text-danger">Discontinued</span>
-                }
-                else
-                {
-                    <span class="text-danger">In Use</span>
                 }
             </td>
         </tr>

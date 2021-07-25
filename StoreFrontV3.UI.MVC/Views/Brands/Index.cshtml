@@ -1,33 +1,11 @@
 ﻿@model IEnumerable<StoreFrontV3.DATA.EF.Brand>
 
 @{
-    ViewBag.Title = "Guitar Brands";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<br />
+<table class="table pushItDownBrands" id="BrandsTable">
 
-<div id="main" class="section">
-    <div class="container">
-        <div id="MessageDisplay" class="row">
-            <div class="col-md-10 col-md-offset-1" id="MessageContent"></div>
-        </div>
-    </div>
-</div>
-
-<h2>@ViewBag.Title</h2>
-
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
-
-<p class="row">
-    <button id="toggleBrandCreate" class="btn btn-primary pull-left">Add New</button>
-    <br />
-</p>
-
-<div id="BrandCreate">
-    @Html.Partial("AjaxCreate", new StoreFrontV3.DATA.EF.Brand())
-</div>
-
-<table class="table" id="BrandsTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.BrandName)
@@ -63,22 +41,43 @@
                 @*@Html.ActionLink("Edit", "Edit", new { id=item.BrandID }) |
                     @Html.ActionLink("Details", "Details", new { id=item.BrandID }) |
                     @Html.ActionLink("Delete", "Delete", new { id=item.BrandID })*@
-                <a href="" class="DetailsLink" id="@item.BrandID">Details</a> |
-                <a href="" class="EditLink" id="@item.BrandID">Edit</a> |
-
-                @Ajax.ActionLink("Delete", "AjaxDelete", "Brands", new { id = item.BrandID}, new AjaxOptions {
-        HttpMethod = "POST",
-        Confirm = $"Are you sure you want to delete {item.BrandName} from brands?",
-        OnSuccess = "deleteConfirmed",
-        OnFailure = "deleteFailed"
-    })
+                <a href="" class="DetailsLink" id="@item.BrandID">Details</a>
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    @:|
+                    <a href="" class="EditLink" id="@item.BrandID">Edit</a> @:|
+                    @Ajax.ActionLink("Delete", "AjaxDelete", "Brands", new { id = item.BrandID}, new AjaxOptions {
+                    HttpMethod = "POST",
+                    Confirm = $"Are you sure you want to delete {item.BrandName} from brands?",
+                    OnSuccess = "deleteConfirmed",
+                    OnFailure = "deleteFailed"
+                    })
+                }
             </td>
         </tr>
     }
-
 </table>
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+<p class="row pushItDownStyle">
+    <button id="toggleBrandCreate" class="btn btn-primary pull-left">Add New</button>
+    <br />
+</p>
+}
 
-<div id="PublisherDetails"></div>
+<div id="main" class="section">
+    <div class="container">
+        <div id="MessageDisplay" class="row">
+            <div class="col-md-10 col-md-offset-1" id="MessageContent"></div>
+        </div>
+    </div>
+</div>
+
+<div id="BrandCreate">
+    @Html.Partial("AjaxCreate", new StoreFrontV3.DATA.EF.Brand())
+</div>
+
+<div id="BrandDetails"></div>
 
 @section scripts {
     <script>
@@ -98,8 +97,9 @@
         $('a.DetailsLink').click(function (e) {
             e.preventDefault();
             $("#BrandDetails").data('bId', $(this).attr('id')).dialog({
-                width: 400,
-                height: 200,
+                width: 600,
+                height: 0,
+
                 open: function () {
                     var pubID = $(this).data('bId');
                     $(this).load(`/Brands/BrandDetails/${pubID}`);
@@ -152,6 +152,7 @@
         $('a.EditLink').click(function (e) {
             e.preventDefault();
             var brandID = $(this).attr("id");
+
 
             var row = $('#Brand-' + brandID).children();
             console.log(row);

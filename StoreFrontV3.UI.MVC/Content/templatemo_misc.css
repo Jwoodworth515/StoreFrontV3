@@ -106,10 +106,83 @@ body.blurred > * {
     border: medium solid #000000;
 }
 
+.pushItDownLess {
+    margin-top: 25.5em;
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+}
+
+.pushItDownSome {
+    margin-top: 29em;
+    color: #FFFFFF;
+}
+
 .pushItDownMore {
     margin-top: 42em;
     color: #FFFFFF;
     background-color: rgba(6, 33, 50, .9);
     border: medium solid #000000;
 }
+
+.pushItDownStyle {
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
+}
+
+.pushItDownStyle2 {
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+}
+
+.pushItDownStyleCart {
+    margin-top: 29em;
+    margin-left: 17em;
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
+}
+
+.pushItDownCreate {
+    margin-top: 27em;
+    margin-left: -17em;
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
+}
+
+.pushItDownEmail {
+    margin-top: 29em;
+    margin-right: 8em;
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
+}
+
+.pushItDownPassResetConfirm {
+    margin-top: 29em;
+    margin-left: 10em;
+    margin-right: 10em;
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
+}
+
+.pushItDownBrands {
+    margin-top: 29em;
+    margin-left: 25em;
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
+}
+
+.pushItDownEmailConfirm {
+    margin-top: 29em;
+    margin-left: 10em;
+    margin-right: 10em;
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
+}
+
 

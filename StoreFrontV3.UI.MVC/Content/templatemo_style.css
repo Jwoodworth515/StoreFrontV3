@@ -12,9 +12,10 @@ http://forums.themeshaper.com/topic/background-image-moves-on-resize
 
 */
 
+/**{border: 1px solid #FFFFFF;}*/
 
 /******************************* General Styles **********************************/
-html, body {
+html {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     padding: 0px;
@@ -23,7 +24,7 @@ html, body {
     color: white;
     background-position: center;
     background-image: url('images/Wood Texture.jpg');
-    background-size: contain;
+    background-size: cover;
 }
 
 body {

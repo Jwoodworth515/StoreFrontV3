@@ -117,7 +117,7 @@ namespace StoreFrontV3.DATA.EF//.StoreFrontV3Metadata
 
         [Display(Name = "Guitar Description")]
         [DisplayFormat(NullDisplayText = "[N/A]")]
-        [MaxLength(1, ErrorMessage = "*Value must be 1 character or more")]
+        [Required(ErrorMessage = "*Value must be 1 character or more")]
         [UIHint("MultilineText")]
         public string GuitarDescription { get; set; }
 

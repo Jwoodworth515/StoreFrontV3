@@ -2,18 +2,39 @@
 
 @model Dictionary<int, StoreFrontV3.UI.MVC.Models.CartItemViewModel>
 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
 @{
     ViewBag.Title = "Shopping Cart";
 
     decimal? cartTotal = 0;
     int totalCountOfItems = 0;
 }
+<br />
 
-<p class="text-right">
-    @Html.ActionLink("Back to Shopping", "Index", "Guitars", null, new { @class = "btn btn-info" })
-</p>
+@*<p>
+        @Html.ActionLink("Back to Shopping", "Index", "Guitars", null, new { @class = "btn btn-default" })
+    </p>*@
 
-<h2 class="text-right">@ViewBag.Title</h2>
+@*<h2 class="text-right">@ViewBag.Title</h2>*@
 
 @*<p>
         @Html.ActionLink("Create New", "Create")
@@ -29,12 +50,12 @@ else
 {
 
 
-    <table class="table pushItDown">
+    <table class="table pushItDownStyleCart" style="align-content: center">
         <tr>
             <th>Guitar Image</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Total</th>
+            <th>Model &nbsp&nbsp&nbsp</th>
+            <th>Price &nbsp</th>
+            <th>Total &nbsp&nbsp&nbsp</th>
             <th></th>
         </tr>
 
@@ -43,6 +64,16 @@ else
             <tr>
                 <td>
                     <img src="~/Content/images/Guitars/t_@item.Value.Product.GuitarImage" alt="@item.Value.Product.GuitarModel" />
+                </td>
+                <td>@item.Value.Product.GuitarModel</td>
+                <td>@string.Format($"{item.Value.Product.Price:c}")</td>
+                <td>
+                    @{
+                        decimal? lineTotal = item.Value.Product.Price * item.Value.Qty;
+                        cartTotal += lineTotal;
+                    }
+
+                    @string.Format($"{lineTotal:c}")
                 </td>
                 <td>
                     @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
@@ -55,16 +86,6 @@ else
                     @{
                         totalCountOfItems += item.Value.Qty;
                     }
-                </td>
-                <td>@item.Value.Product.GuitarModel</td>
-                <td>@string.Format($"{item.Value.Product.Price:c}")</td>
-                <td>
-                    @{
-                        decimal? lineTotal = item.Value.Product.Price * item.Value.Qty;
-                        cartTotal += lineTotal;
-                    }
-
-                    @string.Format($"{lineTotal:c}")
                 </td>
                 <td>
                     @Html.ActionLink("Remove from Cart", "RemoveFromCart", new { id = item.Key })
@@ -81,10 +102,10 @@ else
 
     </table>
 
-    <p class="alert alert-success text-center">
+    <p class="alert alert-success text-center pushItDownStyle">
         You have @totalCountOfItems item@(totalCountOfItems == 1 ? " " : "s") in your cart.
         <br />
-        Your total before taxes and shipping is @string.Format($"{cartTotal:c}")
+        Your total before taxes and shipping is &nbsp&nbsp&nbsp @string.Format($"{cartTotal:c}")
     </p>
 
 }
