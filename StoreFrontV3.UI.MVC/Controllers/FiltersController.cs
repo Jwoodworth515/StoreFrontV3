@@ -27,9 +27,10 @@ namespace StoreFrontV3.UI.MVC.Controllers
 
         public ActionResult GuitarsGrid()
         {
-            ViewBag.Genres = db.Brands.Select(x => x.BrandName).ToList();
+            ViewBag.Guitar = db.Guitars.Select(x => x.GuitarID).ToList();
+            ViewBag.Brands = db.Brands.Select(x => x.BrandName).ToList();
 
-            List<Guitar> guitars = db.Guitars.Include(b => b.GuitarCategory).Include(b => b.ProductionDate).Include(b => b.GuitarModel).Include(b => b.GuitarInventory).ToList();
+            List<Guitar> guitars = db.Guitars.Include(b => b.Guitar_Category).ToList();
             return View(guitars);
         }
 

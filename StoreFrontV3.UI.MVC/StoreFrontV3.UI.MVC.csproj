@@ -612,6 +612,7 @@
     <Content Include="Views\Brands\Details.cshtml" />
     <Content Include="Views\Brands\Delete.cshtml" />
     <Content Include="Views\Brands\Create.cshtml" />
+    <Content Include="Views\Filters\GuitarsGrid.cshtml" />
     <None Include="_Archive\OGFiles\OGScripts\jquery-3.3.1.intellisense.js" />
     <Content Include="_Archive\OGFiles\OGScripts\bootstrap.js" />
     <Content Include="_Archive\OGFiles\OGScripts\bootstrap.min.js" />
@@ -644,7 +645,9 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

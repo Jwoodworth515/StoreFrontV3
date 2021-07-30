@@ -1,0 +1,53 @@
+﻿@model IEnumerable<StoreFrontV3.DATA.EF.Guitar>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+<div class="pushItDown">
+    <section id="guitarsGrid">
+        <div>
+            <p>
+                <a href="@Url.Action("Clientside", "Filters")" class="pull-right btn btn-success" style="margin-right: 11em;">Go To Table View</a>
+            </p>
+            <div class="col-md-12 text-center pushItDownStyle2" style="margin-bottom: 10px; margin-left: 20px;">
+                @foreach (var brand in ViewBag.Brands)
+                {
+                    string name = brand;
+                    if (!(brand.IndexOf(' ') < 0))
+                    {
+                        name = brand.Substring(0, brand.IndexOf(' '));
+                    }
+                    <button class="btn btn-info pushItDownStyle2" id="brand-@brand" onclick="filter('@name')">@brand</button>
+                }
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 @(item.BrandID != null ? item.Brand.BrandName : "unknown") guitar" style="margin: 1em;">
+                    <a href="@Url.Action("Details", "Guitars", new { id = item.GuitarID })" class="course-img">
+                        <img src="~/Content/images/Guitars/t_@item.GuitarImage" alt="@item.GuitarModel" />
+                    </a>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+
+@section scripts{
+    <script>
+        function filter(brand) {
+            $('#guitarsGrid div.guitar').each(function () {
+                if (!$(this).hasClass(brand)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        }
+    </script>
+}

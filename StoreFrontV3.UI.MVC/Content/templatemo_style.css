@@ -24,12 +24,14 @@ html {
     color: white;
     background-position: center;
     background-image: url('images/Wood Texture.jpg');
-    background-size: cover;
+    background-size: contain;
 }
 
 body {
     width: 100%;
     display: table;
+    /*background-color: unset;*/
+    /*background-image: url('images/Wood Texture.jpg');*/
 }
 
     p {
