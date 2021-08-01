@@ -6,7 +6,7 @@
 
 <div>
     <br />
-    <dl class="dl-horizontal pushItDown">
+    <dl class="dl-horizontal pushItDownBrands">
         @*<h2>@ViewBag.Title</h2>*@
         <h4>Guitar Details</h4>
         <hr />
@@ -110,12 +110,12 @@
             {
                 @Html.HiddenFor(x => x.GuitarID)
                 <span class="label">Quantity: </span>
-                @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 15px; display: inline;" })
+                @Html.TextBox("Qty", 1, new { @class = "form-control pushItDownSomeStyle", @style = "max-width: 15px; display: inline;" })
                 <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
             }
         </p>
         <p>
-            <img src="~/Content/images/Guitars/@Model.GuitarImage" alt="Book cover" title="@Model.GuitarModel" />
+            <img src="~/Content/images/Guitars/@Model.GuitarImage" alt="Guitar Image" title="@Model.GuitarModel" />
         </p>
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.GuitarID }) |

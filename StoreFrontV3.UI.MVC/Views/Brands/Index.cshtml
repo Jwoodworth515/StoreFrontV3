@@ -59,10 +59,10 @@
 </table>
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
-<p class="row pushItDownStyle">
-    <button id="toggleBrandCreate" class="btn btn-primary pull-left">Add New</button>
-    <br />
-</p>
+    <p class="row">
+        <button id="toggleBrandCreate" class="btn btn-primary pull-left">Add New</button>
+        <br />
+    </p>
 }
 
 <div id="main" class="section">
@@ -216,4 +216,3 @@
         });
     </script>
 }
-

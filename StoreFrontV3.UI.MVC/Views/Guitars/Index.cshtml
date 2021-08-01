@@ -6,7 +6,7 @@
 
 <br />
 
-<table class="table pushItDown">
+<table class="table pushItDownBrands">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.GuitarImage)
@@ -16,7 +16,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.GuitarModel)
-        </th>
+        </th>s
         <th>
             @Html.DisplayNameFor(model => model.GuitarDescription)
         </th>
@@ -33,21 +33,21 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td style="padding: 4px;">
+            <td>
                 @*@Html.DisplayFor(modelItem => item.GuitarImage)*@
                 @*<img src="~/Content/images/Guitars/t_@item.GuitarImage" />*@
                 <a href="~/Content/images/Guitars/@item.GuitarImage" data-rel="lightbox"><img src="~/Content/images/Guitars/t_@item.GuitarImage" /></a>
             </td>
-            <td style="padding: 4px;">
+            <td>
                 @Html.DisplayFor(modelItem => item.Brand.BrandName)
             </td>
-            <td style="padding: 15px;">
+            <td>
                 @Html.DisplayFor(modelItem => item.GuitarModel)
             </td>
-            <td style="padding: 8px;">
+            <td>
                 @Html.DisplayFor(modelItem => item.GuitarDescription)
             </td>
-            <td style="padding: 4px;">
+            <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td></td>

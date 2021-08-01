@@ -30,13 +30,13 @@ html {
 body {
     width: 100%;
     display: table;
-    /*background-color: unset;*/
-    /*background-image: url('images/Wood Texture.jpg');*/
+    background-color: unset;
+    background-image: url('images/Wood Texture.jpg');
 }
 
     p {
     font-size: 14px;
-    color: #aeb5ba;
+    color: white;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
@@ -44,7 +44,7 @@ body {
 
 a {
     text-decoration: none;
-    color: white;
+    color: #FFFFFF;
 }
 
 ul {
@@ -78,6 +78,7 @@ h2 {
     color: #d2e0a2;
     text-align: center;
     margin: 0;
+    text-shadow: 1px 1px #333;
 }
 
 .container {
@@ -93,7 +94,8 @@ h2 {
     padding: 20px;
     margin: auto;
     text-align: center;
-    color: #aeb5ba;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 1px #000;
 }
 
 .menu {
@@ -119,6 +121,8 @@ h2 {
     left: 20px;
     width: 100%;
     text-align: center;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 1px #062132;
 }
 
     .content .hexagon_container {
@@ -142,6 +146,7 @@ align-content: center;
     position: absolute;
     top: 790px;
     text-align: center;
+    
 }
 
     .pagination li {
@@ -151,7 +156,8 @@ align-content: center;
         float: left;
         width: 25px;
         height: 25px;
-        background-color: #062132;
+        background-color: #383E42;
+        text-shadow: 1px 1px 1px #333;
         margin-right: 5px;
         padding: 2px;
         cursor: pointer;
@@ -163,7 +169,7 @@ align-content: center;
     }
 
         .pagination li:hover, .pagination li.active {
-            background-color: #000000;
+            background-color: #FFFFFF;
         }
 
 .hexagon {

@@ -8,10 +8,10 @@
 
 @*<h2>@ViewBag.Title</h2>*@
 
-<section class="pushItDown">
-    @*<p id="grid">
-        <a href="@Url.Action("GuitarsGrid", "Filters")" class="pull-right btn btn-success" style="margin-right: 11em;">Go To Grid View</a>
-    </p>*@
+<section class="pushItDownBrands">
+    <p id="grid">
+        <a href="@Url.Action("GuitarsGrid", "Filters")" class="pull-right btn btn-success" style="margin: 1em 13em;">Go To Grid View</a>
+    </p>
     <table class="table" id="data-table" style="color: rgb(203, 220, 162)">
         <thead>
             <tr>
@@ -63,22 +63,22 @@
                         <img src="~/Content/images/Guitars/t_@item.GuitarImage" alt="@item.GuitarModel" />
                     </td>
                     <td class="pushItDownStyle2">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                        @Html.DisplayFor(modelItem => item.Brand.BrandName)
                     </td>
                     <td class="pushItDownStyle2">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(modelItem => item.GuitarModel)
+                        @Html.DisplayFor(modelItem => item.GuitarModel)
                     </td>
                     <td class="pushItDownStyle2">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(modelItem => item.ProductionDate)
+                        &nbsp;&nbsp;@Html.DisplayFor(modelItem => item.ProductionDate)
                     </td>
                     <td class="pushItDownStyle2">
                         @Html.DisplayFor(modelItem => item.Price)
                     </td>
                     <td class="pushItDownStyle2">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(modelItem => item.UnitsInStock)
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.UnitsInStock)
                     </td>
                     <td class="pushItDownStyle2">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(modelItem => item.Guitar_Category.GuitarCategory)
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.Guitar_Category.GuitarCategory)
                     </td>
                     @*<td>
                             @Html.DisplayFor(modelItem => item.GuitarDescription)

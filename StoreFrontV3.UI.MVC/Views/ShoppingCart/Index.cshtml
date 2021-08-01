@@ -2,26 +2,6 @@
 
 @model Dictionary<int, StoreFrontV3.UI.MVC.Models.CartItemViewModel>
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
 @{
     ViewBag.Title = "Shopping Cart";
 
@@ -42,7 +22,7 @@
 
 @if (Model.Count == 0)
 {
-    <p class="alert alert-warning">
+    <p class="alert alert-warning pushItDown">
         @ViewBag.Message
     </p>
 }
@@ -50,7 +30,7 @@ else
 {
 
 
-    <table class="table pushItDownStyleCart" style="align-content: center">
+    <table class="table pushItDown" style="align-content: center">
         <tr>
             <th>Guitar Image</th>
             <th>Model &nbsp&nbsp&nbsp</th>
@@ -79,8 +59,10 @@ else
                     @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
                     {
                         @Html.Hidden("guitarID", item.Key)
-                        @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", @style = "max-width: 50px; display: inline" })
-                        <input type="submit" value="Update Quantity" class="btn btn-info" />
+                        @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control pushItDownLess", @style = "color: white; max-width: 50px; display: inline" })
+                        <input type="submit" value="Update Quantity" class="btn btn-success" />
+                        @Html.ActionLink("Back to Shopping", "Index", "Guitars", null, new { @class = "btn btn-default" })
+
                     }
 
                     @{
@@ -105,7 +87,7 @@ else
     <p class="alert alert-success text-center pushItDownStyle">
         You have @totalCountOfItems item@(totalCountOfItems == 1 ? " " : "s") in your cart.
         <br />
-        Your total before taxes and shipping is &nbsp&nbsp&nbsp @string.Format($"{cartTotal:c}")
+        Your total before taxes and shipping is &nbsp @string.Format($"{cartTotal:c}")
     </p>
 
 }
