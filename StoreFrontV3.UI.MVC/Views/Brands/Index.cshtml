@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <br />
-<table class="table pushItDownBrands" id="BrandsTable">
+<table class="table pushItDownLeast" id="BrandsTable">
 
     <tr>
         <th>
@@ -60,7 +60,7 @@
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
     <p class="row">
-        <button id="toggleBrandCreate" class="btn btn-primary pull-left">Add New</button>
+        <button id="toggleBrandCreate" class="btn btn-primary pull-right">Add New</button>
         <br />
     </p>
 }
@@ -98,7 +98,7 @@
             e.preventDefault();
             $("#BrandDetails").data('bId', $(this).attr('id')).dialog({
                 width: 600,
-                height: 0,
+                height: 200,
 
                 open: function () {
                     var pubID = $(this).data('bId');
@@ -216,3 +216,4 @@
         });
     </script>
 }
+

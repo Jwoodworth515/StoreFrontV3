@@ -61,7 +61,7 @@ else
                         @Html.Hidden("guitarID", item.Key)
                         @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control pushItDownLess", @style = "color: white; max-width: 50px; display: inline" })
                         <input type="submit" value="Update Quantity" class="btn btn-success" />
-                        @Html.ActionLink("Back to Shopping", "Index", "Guitars", null, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Back to Shopping", "Index", "Guitars", null, new { @class = "btn btn-primary" })
 
                     }
 

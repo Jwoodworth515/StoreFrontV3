@@ -8,7 +8,8 @@
     <br />
     <dl class="dl-horizontal pushItDownBrands">
         @*<h2>@ViewBag.Title</h2>*@
-        <h4>Guitar Details</h4>
+        <br />
+        <br />
         <hr />
         <dt>
             @Html.DisplayNameFor(model => model.Brand.BrandName)
@@ -110,17 +111,23 @@
             {
                 @Html.HiddenFor(x => x.GuitarID)
                 <span class="label">Quantity: </span>
-                @Html.TextBox("Qty", 1, new { @class = "form-control pushItDownSomeStyle", @style = "max-width: 15px; display: inline;" })
-                <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+                @Html.TextBox("Qty", 1, new { @class = "form-control pushItDownSomeStyle", @style = "max-width: 15px; display: inline;"})
+                <input type="submit" value="Add to Cart" class="btn btn-success" name="qty" />
+                @Html.ActionLink("Back to Shopping", "Index", "Guitars", null, new { @class = "btn btn-primary" })
             }
         </p>
         <p>
             <img src="~/Content/images/Guitars/@Model.GuitarImage" alt="Guitar Image" title="@Model.GuitarModel" />
         </p>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.GuitarID }) |
-            @Html.ActionLink("Back to List", "Index")
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = Model.GuitarID }) @:|
+            }
         </p>
     </dl>
 </div>
+<p class="templatemo_footer pushItDownStyle">
+    <a href="#" style="color: #d2e0a2;">Return to Top</a>
+</p>
 

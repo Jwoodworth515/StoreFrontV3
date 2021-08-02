@@ -31,6 +31,7 @@
 
 </head>
 <body>
+
     <div id="admin-btn" class="button" onclick="openAdminNav()">
         <span class="vertical-text">Menu</span>
     </div>
@@ -38,12 +39,6 @@
     <nav id="admin-nav" class="side-nav">
         <a href="javascript:void(0)" class="close-btn" onclick="closeAdminNav()">&times;</a>
         <ul>
-            @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-            <li>@Html.ActionLink("Team", "Team", "Home")</li>
-            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-            <li>@Html.ActionLink("Shop", "Index", "Guitars")</li>*@
-            <li style="background-color: #0A2433;">@Html.Partial("_LoginPartial")</li>
-            <li style="background-color: #0A2433;">@Html.ActionLink("Admin Login", "Login", "Account")</li>
             <li>@Html.ActionLink("Guitar Search", "Clientside", "Filters")</li>
             <li>@Html.ActionLink("Brands", "Index", "Brands")</li>
             <li class="nav-item">
@@ -60,7 +55,12 @@
                 }
             </li>
         </ul>
+        @*<ul>
+                @Html.Partial("_LoginPartial")
+            </ul>*@
     </nav>
+
+    <div>@Html.Partial("_LoginPartial")</div>
 
     <div class="container">
         <div class="menu">

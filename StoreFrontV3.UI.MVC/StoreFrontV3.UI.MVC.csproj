@@ -362,8 +362,6 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\images\B#Logo.png" />
-    <Content Include="Content\images\Bee.jpg" />
     <Content Include="Content\images\Employees\JacksonDavis.jpg" />
     <Content Include="Content\images\Employees\JacksonDavis2.jpg" />
     <Content Include="Content\images\Employees\JeremyBaker5.jpg" />

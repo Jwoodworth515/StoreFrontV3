@@ -146,7 +146,7 @@ align-content: center;
     position: absolute;
     top: 790px;
     text-align: center;
-    
+    color: #000000;
 }
 
     .pagination li {
@@ -156,7 +156,7 @@ align-content: center;
         float: left;
         width: 25px;
         height: 25px;
-        background-color: #383E42;
+        background-color: #062132;
         text-shadow: 1px 1px 1px #333;
         margin-right: 5px;
         padding: 2px;

@@ -56,7 +56,7 @@
                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
                     @:|
-                    @Html.ActionLink("Create New", "Create") @:|
+                    @Html.ActionLink("Create", "Create") @:|
                     @Html.ActionLink("Edit", "Edit", new { id = item.GuitarID }) @:|
                     @Html.ActionLink("Delete", "Delete", new { id = item.GuitarID })
                 }
@@ -67,5 +67,7 @@
             </td>
         </tr>
     }
-
 </table>
+<p class="templatemo_footer pushItDownStyle">
+    <a href="#" style="color: #d2e0a2;">Return to Top</a>
+</p>

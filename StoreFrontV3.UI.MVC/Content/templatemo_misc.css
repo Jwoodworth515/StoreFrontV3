@@ -116,6 +116,7 @@ body.blurred > * {
     margin-top: 25em;
     color: #FFFFFF;
     background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
 }
 
 .pushItDownSome {
@@ -134,6 +135,12 @@ body.blurred > * {
     color: #FFFFFF;
     background-color: rgba(6, 33, 50, .9);
     border: medium solid #000000;
+}
+
+.pushItDownDeleteButton {
+    margin-top: 29.75em;
+    margin-left: 17em;
+    color: #FFFFFF;
 }
 
 .pushItDownStyle {
@@ -156,8 +163,16 @@ body.blurred > * {
 }
 
 .pushItDownCreate {
-    margin-top: 27em;
-    margin-left: -17em;
+    margin-top: 26em;
+    margin-right: 7em;
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
+}
+
+.pushItDownCreateGuitar {
+    margin-top: 26em;
+    margin-left: -14em;
     color: #FFFFFF;
     background-color: rgba(6, 33, 50, .9);
     border: medium solid #000000;
@@ -188,6 +203,33 @@ body.blurred > * {
     border: medium solid #000000;
 }
 
+.pushItDownBrandsCreate {
+    color: #FFFFFF;
+    border: medium solid #000000;
+    margin-top: 47em;
+    margin-right: -25em;
+    margin-left: -40em;
+    background-color: rgba(6, 33, 50, .9);
+    padding: 3em;
+}
+
+.pushItDownBrandsEdit {
+    color: #FFFFFF;
+    border: medium solid #000000;
+    margin-top: 46em;
+    margin-right: -25em;
+    margin-left: -30em;
+    background-color: rgba(6, 33, 50, .9);
+}
+
+.pushItDownBrandDetails {
+    margin-top: 18em;
+    margin-left: 7px;
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
+}
+
 .pushItDownEmailConfirm {
     margin-top: 29em;
     margin-left: 10em;
@@ -197,6 +239,15 @@ body.blurred > * {
     border: medium solid #000000;
 }
 
+.pushItDownHelp {
+    margin-top: 25em;
+    padding: 5px 5px 150px 5px;
+    color: #FFFFFF;
+    background-color: rgba(6, 33, 50, .9);
+    border: medium solid #000000;
+}
+
 .pushItUp {
     margin-top: 5em;
 }
+
